@@ -1,0 +1,17 @@
+.gly-red {
+    color: red;
+}
+
+.gly-green{
+    color: green;
+}
+
+.table tr.active td {
+  background-color:#123456 !important;
+  color: red;
+}
+
+
+.gly-cur td {
+ cursor: pointer;
+}

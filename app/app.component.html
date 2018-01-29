@@ -1,0 +1,81 @@
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Image and text -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="assets/kiwi.png">
+      </a>
+      <a class="navbar-brand" href="#">
+        <b>
+          Kiwi!</b>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <h3 class="text-center">Kiwi Manager
+  </h3>
+  <hr/>
+
+  <form class="form-inline" #form="ngForm" (ngSubmit)="saveTaskData()">
+ 
+      <div class="input-group col-xs-5">
+        <input class="form-control" id="tname" type="text" placeholder="Whats is the task?" name="tname" [(ngModel)]="taskObj.tname" required  #tname="ngModel">
+      </div>
+      <div class="input-group col-xs-3">
+        <select class="form-control" name="owner" [(ngModel)]="taskObj.owner">
+          <option value="DV">Dinesh Vadivelu</option>
+          <option value="PJ">Paresh Jadhav</option>
+          <option value="AA">Ahmad Alzamer</option>
+          <option value="DS">David Salais</option>
+        </select>
+        <!-- <input type="text" class="form-control" placeholder="Assigned To?" name="owner" [(ngModel)]="selectedRow.owner"/> <span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i> </span> -->
+      </div>
+      <div class="input-group col-xs-1">
+        <input class="form-control" name="due" type="text" placeholder="due in?" required  [(ngModel)]="taskObj.due">
+      </div>
+      <div class="input-group col-xs-2">
+        <select class="form-control" name="tile" [(ngModel)]="taskObj.tile" required >
+          <option selected="selected" value="M&O">M&O</option>
+          <option value="CR">CR</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+      </button>
+
+  </form>
+  <br/>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Task Name</th>
+        <th>Owner</th>
+        <th>Due</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of task_data; let i=index" [class.active]="i == selectedRow">
+        <td></td>
+        <td>
+          {{task.tname}}
+        </td>
+        <td>
+          <span class="badge">
+            {{task.owner}}
+          </span>
+        </td>
+        <td>
+          {{task.dueDt}}</td>
+        <td >
+          <span class="glyphicon glyphicon-ok gly-green gly-cur" aria-hidden="true" (click)="completeTaskData(i)"></span>
+          &nbsp; | &nbsp;
+          <span class="glyphicon glyphicon-pencil gly-cur" aria-hidden="true"  (click)="setClickedRow(i)"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
